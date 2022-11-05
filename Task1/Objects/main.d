@@ -12,6 +12,5 @@
 .\objects\main.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h
 .\objects\main.o: .\RTE\Device\MDR1901VC1\system_MDR1901VC1T.h
 .\objects\main.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\project_files\inc\uLED_fun.h
 .\objects\main.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h

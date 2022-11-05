@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\HW_Task1_CLK_TimerHandler.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\HW_Task1_CLK_TimerHandler.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Nov 05 12:51:54 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Nov 05 14:16:15 2022
 <BR><P>
-<H3>Maximum Stack Usage =         56 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         64 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; m_initLEDs &rArr; PORT_Init
 <P>
@@ -222,7 +222,7 @@ Global Symbols
 <P><STRONG><a name="[73]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[39]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 64 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; m_initLEDs &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -650,8 +650,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[48]"></a>m_initLEDs</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, u_led_func.o(i.m_initLEDs))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = m_initLEDs &rArr; PORT_Init
+<P><STRONG><a name="[48]"></a>m_initLEDs</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, u_led_func.o(i.m_initLEDs))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = m_initLEDs &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORT_StructInit
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORT_Init
@@ -676,7 +676,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3a]"></a>main</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = main &rArr; m_initLEDs &rArr; PORT_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = main &rArr; m_initLEDs &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;m_initLEDs
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;m_setUpTimer

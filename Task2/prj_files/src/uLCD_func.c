@@ -27,7 +27,7 @@ static const uint8_t init_image[32] =
 void m_MLT_Init (void)
 {
   // Разрешить тактирование требуемых портов
-  RST_CLK_PCLKcmd (RST_CLK_PCLK_PORTA | RST_CLK_PCLK_PORTE | RST_CLK_PCLK_PORTC, ENABLE);	
+  //RST_CLK_PCLKcmd (RST_CLK_PCLK_PORTA | RST_CLK_PCLK_PORTE | RST_CLK_PCLK_PORTC, ENABLE);	
 	
 	// Инициализировать выводы МК для работы с ЖКИ
 	m_MLT_Pin_Cfg ();
@@ -52,8 +52,8 @@ void m_MLT_Init (void)
 	m_MLT_Clear_Chip (2);	
 	
 	// Вывести начальное сообщение и рисунок
-  m_MLT_Put_String (init_string, 1);	
-	m_MLT_Put_Image (init_image, 0, 0, 1, 1);
+  //m_MLT_Put_String (init_string, 1);	
+	//m_MLT_Put_Image (init_image, 0, 0, 1, 1);
 
 }
 
@@ -580,6 +580,7 @@ void m_MLT_Put_String (const char* str, int32_t Y)
 
 // Прокрутить строку на cnt шагов и вывести ее
 void m_MLT_Scroll_String (const char* str, int32_t Y, int32_t cnt)
+
 {
   int32_t i, j, L;
 	char c;

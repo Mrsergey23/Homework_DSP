@@ -8,7 +8,6 @@
 */
 #include "MDR32F9Qx_timer.h"
 #include "MDR32F9Qx_rst_clk.h"
-#include <stdio.h> // this library for using type of variables, like uint
 #include "uLED_fun.h"
 /* m_setUpFreq Description.
 This function set up required frequency of CPU

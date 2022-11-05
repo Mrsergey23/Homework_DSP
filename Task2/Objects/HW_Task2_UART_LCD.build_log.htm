@@ -9,12 +9,12 @@ License Information: Sergey Zharkikh, BMSTU, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.36.0.0
-Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.16
-Assembler:       Armasm.exe V6.16
-Linker/Locator:  ArmLink.exe V6.16
-Library Manager: ArmAr.exe V6.16
-Hex Converter:   FromElf.exe V6.16
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
 CPU DLL:         SARMCM3.DLL V5.36.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      Segger\JL2CM3.dll V2.99.40.0
@@ -25,24 +25,33 @@ C:\Keil_v5\Test\Homework_DSP\Task2\HW_Task2_UART_LCD.uvprojx
 Project File Date:  11/05/2022
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Main_Group'
-prj_files/src/uUART_func.c(2): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-prj_files/src/uUART_func.c(3): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_uart.h(47): warning: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead" [-W#warnings]
-    #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
-     ^
-3 warnings generated.
-compiling uUART_func.c...
+compiling main.c...
+.\prj_files\inc\uLCD_func.h(98): warning:  #1-D: last line of file ends without a newline
+  #endif // __U_LCD_FUNC
+.\prj_files\inc\uUART_func.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif // __U_UART_FUNC
+.\prj_files\inc\uRST_CLK_init.h(5): warning:  #1-D: last line of file ends without a newline
+  #endif // __URST_CLK_INIT
+.\prj_files\inc\uTimer_init.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif // __UTIMER_INIT
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h(225): warning:  #1215-D: #warning directive: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
+      #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h(286): warning:  #1215-D: #warning directive: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
+      #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
+.\prj_files\inc\uLED_fun.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif /*__U_LED_FUN_H */
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h(91): warning:  #1215-D: #warning directive: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
+      #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h(47): warning:  #1215-D: #warning directive: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
+      #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
+prj_files\src\main.c(40): warning:  #223-D: function "sprintf" declared implicitly
+  	sprintf(adcString,"CPU Freq %2d MHz",freqCPU_MHz);
+prj_files\src\main.c: 10 warnings, 0 errors
 linking...
-Program Size: Code=2426 RO-data=2050 RW-data=4 ZI-data=5216  
-".\Objects\HW_Task2_UART_LCD.axf" - 0 Error(s), 3 Warning(s).
+Program Size: Code=5456 RO-data=2048 RW-data=8 ZI-data=5216  
+".\Objects\HW_Task2_UART_LCD.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -99,7 +108,7 @@ Package Vendor: Keil
    * Component: Keil::Drivers:UART:2.0.3
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_uart.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

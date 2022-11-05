@@ -1,16 +1,17 @@
-./objects/ulcd_func.o: prj_files\src\uLCD_func.c \
-  prj_files\inc\uLCD_func.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  prj_files\inc\mlt_fonts.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h \
-  RTE\Device\MDR1901VC1\MDR32F9Qx_config.h \
-  RTE\_Main_Group\RTE_Components.h \
-  C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h \
-  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
-  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
-  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
-  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
-  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h \
-  RTE\Device\MDR1901VC1\system_MDR1901VC1T.h \
-  C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h
+.\objects\ulcd_func.o: prj_files\src\uLCD_func.c
+.\objects\ulcd_func.o: .\prj_files\inc\uLCD_func.h
+.\objects\ulcd_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\ulcd_func.o: .\prj_files\inc\mlt_fonts.h
+.\objects\ulcd_func.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
+.\objects\ulcd_func.o: .\RTE\Device\MDR1901VC1\MDR32F9Qx_config.h
+.\objects\ulcd_func.o: .\RTE\_Main_Group\RTE_Components.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
+.\objects\ulcd_func.o: .\RTE\Device\MDR1901VC1\MDR32F9Qx_config.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h
+.\objects\ulcd_func.o: .\RTE\Device\MDR1901VC1\system_MDR1901VC1T.h
+.\objects\ulcd_func.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h
