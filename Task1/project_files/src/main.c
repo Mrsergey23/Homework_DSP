@@ -39,6 +39,7 @@ void m_setUpFreq(uint8_t req_CPUfreq)
 }
 
 
+
 /* m_setUpTimer Description.
 	This function set up required time of Timer Handler
 	function name: m_setUpTimer
@@ -73,11 +74,11 @@ void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq) //Благодаров 141 стр.
 	TIMER_Cmd(MDR_TIMER1, ENABLE);
 }
 
+
 void Delay(__IO uint32_t nCount)
 {
   for (; nCount != 0; nCount--);
 }
-
 
 int main()
 {
@@ -87,9 +88,7 @@ int main()
 	m_initLEDs();
 	m_setUpTimer(timerPeriod, freqCPU_MHz);
 
-	while(1){
-		
-	}
+	while(1){}
 }
 
 //void assert_failed(uint8_t* file, uint32_t line)
