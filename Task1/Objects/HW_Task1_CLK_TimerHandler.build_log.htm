@@ -9,12 +9,12 @@ License Information: Sergey Zharkikh, BMSTU, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.36.0.0
-Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.16
-Assembler:       Armasm.exe V6.16
-Linker/Locator:  ArmLink.exe V6.16
-Library Manager: ArmAr.exe V6.16
-Hex Converter:   FromElf.exe V6.16
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
 CPU DLL:         SARMCM3.DLL V5.36.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      Segger\JL2CM3.dll V2.99.40.0
@@ -22,56 +22,26 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 C:\Keil_v5\Test\Homework_DSP\Task1\HW_Task1_CLK_TimerHandler.uvprojx
-Project File Date:  11/04/2022
+Project File Date:  11/05/2022
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Main_Group'
-RTE/Device/MDR1901VC1/system_MDR1901VC1T.c(22): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1250): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD_Pos" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD_Pos"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1255): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD_Pos" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD_Pos"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1271): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1276): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD"
-     ^
-4 warnings generated.
-compiling system_MDR1901VC1T.c...
-project_files/src/main.c(10): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_timer.h(91): warning: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead" [-W#warnings]
-    #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
-     ^
-1 warning generated.
 compiling main.c...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_port.c(23): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-2 warnings generated.
-compiling MDR32F9Qx_port.c...
-assembling startup_MDR1901VC1T.S...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_rst_clk.c(37): warning: "Legacy v1.5.3: Clock frequencies and timeouts will be removed from MDR32F9Qx_rst_clk.c. Use definitions in MDR32F9Qx_config.h" [-W#warnings]
-    #warning "Legacy v1.5.3: Clock frequencies and timeouts will be removed from MDR32F9Qx_rst_clk.c. Use definitions in MDR32F9Qx_config.h"
-     ^
-1 warning generated.
-compiling MDR32F9Qx_rst_clk.c...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_timer.c(23): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_timer.h(91): warning: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead" [-W#warnings]
-    #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
-     ^
-1 warning generated.
-compiling MDR32F9Qx_timer.c...
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h(91): warning:  #1215-D: #warning directive: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
+      #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h(225): warning:  #1215-D: #warning directive: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
+      #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
+C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h(286): warning:  #1215-D: #warning directive: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
+      #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
+.\project_files\inc\uLED_fun.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif /*__U_LED_FUN_H */
+project_files\src\main.c(105): warning:  #1-D: last line of file ends without a newline
+  }
+project_files\src\main.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=564 RO-data=224 RW-data=4 ZI-data=5216  
-".\Objects\HW_Task1_CLK_TimerHandler.axf" - 0 Error(s), 9 Warning(s).
+Program Size: Code=1804 RO-data=224 RW-data=4 ZI-data=5228  
+".\Objects\HW_Task1_CLK_TimerHandler.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -103,27 +73,27 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:2.0.3
-      Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.c
-      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.h
-      Include file:  Libraries\SPL\MDR32Fx\inc\IRQ_Handler_Template\MDR1901VC1_IT.h
-      Include file:  Libraries\SPL\MDR32Fx\MDR32F9Qx_config.h
-      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
       Include file:  Libraries\CMSIS\MDR32Fx\CoreSupport\CM3\core_cm3.h
-      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
       Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\startup_MDR1901VC1T.S
+      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.h
+      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
+      Include file:  Libraries\SPL\MDR32Fx\inc\IRQ_Handler_Template\MDR1901VC1_IT.h
+      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
+      Include file:  Libraries\SPL\MDR32Fx\MDR32F9Qx_config.h
+      Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.c
 
    * Component: Keil::Drivers:PORT:2.0.3
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_port.c
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h
 
    * Component: Keil::Drivers:RST_CLK:2.0.3
-      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_rst_clk.c
+      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
 
    * Component: Keil::Drivers:TIMER:2.0.3
-      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_timer.c
-Build Time Elapsed:  00:00:02
+      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

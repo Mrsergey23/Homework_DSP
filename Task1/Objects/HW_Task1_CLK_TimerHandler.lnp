@@ -1,5 +1,6 @@
 --cpu Cortex-M3
 ".\objects\main.o"
+".\objects\u_led_func.o"
 ".\objects\startup_mdr1901vc1t.o"
 ".\objects\system_mdr1901vc1t.o"
 ".\objects\mdr32f9qx_port.o"
