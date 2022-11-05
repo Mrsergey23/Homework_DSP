@@ -97,6 +97,15 @@ int main()
 //  printf("Wrong parameters value: file %s on line %d\r\n", file, (int)line);
 
 //}
+
+/* TIMER1_IRQHandler Description.
+	Timer Handler
+	function name: TIMER1_IRQHandler
+	input: nothing
+	output: nothing
+	When Timer 1 is overflow and reset to zero value, we start this function,
+	toggle LED (on/off).
+*/
 void TIMER1_IRQHandler (void)
 {
 	if (TIMER_GetITStatus(MDR_TIMER1, TIMER_STATUS_CNT_ZERO))

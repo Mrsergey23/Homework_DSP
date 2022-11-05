@@ -1,5 +1,9 @@
 #include "uLED_fun.h"
 
+/* init LED port structure.
+	This actions are necessary for working with LED's Port.
+	PIN_LEDs, PORT_LEDs initialized in corresponding header.
+*/
 void m_initLEDs (void)
 {
 	PORT_StructInit (&PortInitStructure);	
@@ -10,19 +14,21 @@ void m_initLEDs (void)
 	PortInitStructure.PORT_SPEED = PORT_SPEED_SLOW;
   PORT_Init (PORT_LEDs, &PortInitStructure);	
 }
-// Потушить указанные светодиоды
+/* LED or LEDs off. 
+Input: you can use chain of numbers pins. 
+(Ex. PORT_Pin_15|PORT_Pin_14 etc.). */
 void m_LED_off (uint32_t Pins)
 {
 	PORT_ResetBits (PORT_LEDs, Pins);
 }
 
-// Зажечь указанные светодиоды
+// LED or LEDs on
 void m_LED_on (uint32_t Pins)
 {
 	PORT_SetBits (PORT_LEDs, Pins);
 }
 
-// Переключить указанные светодиоды
+// Change the current state of LED or LEDs
 void m_LED_toggle (uint32_t Pins)
 {
 	uint32_t data;
