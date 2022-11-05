@@ -1,0 +1,11 @@
+-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c
+-fno-rtti -funsigned-char -fshort-enums -fshort-wchar
+-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./prj_files/src -I ./prj_files/inc
+-I./RTE/Device/MDR1901VC1
+-I./RTE/_Main_Group
+-IC:/Users/user/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include
+-IC:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/CoreSupport/CM3
+-IC:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc
+-IC:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc
+-D__UVISION_VERSION="536" -D_RTE_ -D_RTE_
+-o ./objects/uled_func.o -MD "prj_files/src/uLED_func.c"

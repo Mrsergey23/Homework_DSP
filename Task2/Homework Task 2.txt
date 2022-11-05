@@ -1,0 +1,16 @@
+1) Написать функцию, настраивающую универсальный приемо-
+передатчик UART на заданную скорость передачи информации, в
+зависимости от настроенной частоты микроконтроллера. Обеспечить
+передачу на ПК по прерыванию из п. 2 (Task 1) данных о частоте микроконтроллера.
+
+2) Написать функцию, обеспечивающую вывод на дисплей
+информации: ФИО, группа, частота микроконтроллера, частота прерываний,
+скорость UART и количество произведенных прерываний.
+
+Eng:
+1) Write a function, that is setting up UART with required speed, that depends on
+CPU clock cinfigure. Receive data due to handler (get initial values of Timer and 
+CPU frequency from Homework task 1).
+2) Write a function, that is setting output information to LCD. Information packet:
+Full name, group in UNI, CPU frequency , period/frequency of handler and number of finished
+handlers. 

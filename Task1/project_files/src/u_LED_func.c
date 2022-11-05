@@ -6,6 +6,7 @@
 */
 void m_initLEDs (void)
 {
+	PORT_InitTypeDef PortInitStructure;
 	PORT_StructInit (&PortInitStructure);	
   PortInitStructure.PORT_Pin   = PIN_LEDs;
   PortInitStructure.PORT_MODE  = PORT_MODE_DIGITAL;
