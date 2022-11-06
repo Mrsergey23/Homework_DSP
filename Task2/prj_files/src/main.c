@@ -18,29 +18,37 @@
 //#include "retarget_uart.h" // tried to debug with UART
 
 //----------------- INPUT parameters -----------------
-#define UART_SPEED		115200 	// bps
-#define FREQ_CPU			80    	// MHz
-#define TIMER_PERIOD		5			  // S
-
+#define UART_SPEED		115200 			 // bps
+#define FREQ_CPU			  80    			 // MHz
+#define TIMER_PERIOD		5			  	 // S
+unsigned char Data_receive[4] = {0,0,0,0}; // package for receiving data from UART 
 uint32_t counter_handler = 0;
+
 int main()
 {
+//	while(UART_GetFlagStatus(UART,UART_FLAG_RXFE)==0)
+//	{
+//		Data_receive[3] = (unsigned char)UART_ReceiveData(UART);
+//	}
 	char adcString [15];
 	m_setUpFreq(FREQ_CPU);
 	m_initLEDs();
+	m_MLT_Init();
 	m_setUpTimer(TIMER_PERIOD, FREQ_CPU);
 	m_UART_Init(UART_SPEED);
-	m_MLT_Init();
+	
 	
 	m_MLT_Put_String ("Жарких Сергей",0);
 	m_MLT_Put_String ("Андреевич",1);
 	m_MLT_Put_String ("РЛ1-113",2);
-	sprintf(adcString,"CPU Freq %2d MHz",FREQ_CPU); // convert number to string 
+	sprintf(adcString,"CPU Freq %d MHz",FREQ_CPU); // convert number to string 
 	m_MLT_Put_String(adcString,4);
+	sprintf(adcString,"UART %d bps",UART_SPEED); // convert number to string 
+	m_MLT_Put_String(adcString,6);
 
 	while(1)
 	{
-		sprintf(adcString,"Handler %2d",counter_handler);
+		sprintf(adcString,"Handler %d",counter_handler);
 		m_MLT_Put_String(adcString,5);
 	}
 }
@@ -64,3 +72,11 @@ void TIMER1_IRQHandler (void)
 	}
 }
 
+//// Try to do change speed by UART
+//void UART_Handler_RX_TX(void)
+//{
+//}
+//void UART3_IRQHandler (void)
+//{
+//	UART_Handler_RX_TX();
+//}

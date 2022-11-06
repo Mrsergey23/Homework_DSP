@@ -1,14 +1,13 @@
-.\objects\urst_clk_init.o: prj_files\src\uRST_CLK_init.c
-.\objects\urst_clk_init.o: .\prj_files\inc\uRST_CLK_init.h
-.\objects\urst_clk_init.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
-.\objects\urst_clk_init.o: .\RTE\Device\MDR1901VC1\MDR32F9Qx_config.h
-.\objects\urst_clk_init.o: .\RTE\_Main_Group\RTE_Components.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
-.\objects\urst_clk_init.o: .\RTE\Device\MDR1901VC1\MDR32F9Qx_config.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armcc.h
-.\objects\urst_clk_init.o: C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h
-.\objects\urst_clk_init.o: .\RTE\Device\MDR1901VC1\system_MDR1901VC1T.h
+./objects/urst_clk_init.o: prj_files\src\uRST_CLK_init.c \
+  prj_files\inc\uRST_CLK_init.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h \
+  RTE\Device\MDR1901VC1\MDR32F9Qx_config.h \
+  RTE\_Main_Group\RTE_Components.h \
+  C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h \
+  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm3.h \
+  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_version.h \
+  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h \
+  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h \
+  C:\Users\user\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h \
+  RTE\Device\MDR1901VC1\system_MDR1901VC1T.h
