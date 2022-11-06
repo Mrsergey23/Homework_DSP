@@ -3,15 +3,16 @@
 #include "MDR32F9Qx_uart.h"
 void m_UART_Init (uint32_t UART_Speed)
 {
-	// Структура для инициализации линий ввода-вывода
+	// Structure for configure input/output port
   PORT_InitTypeDef PortInitStructure; 
-	// Структура для инициализации UART
+	// Structure for configure UART
   UART_InitTypeDef UARTInitStructure; 
 	
-  // Разрешить тактирование UART3 и PORTF
+  // Enable clock to UART3 and corresponding port. Don't need here, because 
+	// 		clock all ports in CLK lib (uRST_CLK_init.h)
   //RST_CLK_PCLKcmd (RST_CLK_PCLK_UART3 | RST_CLK_PCLK_PORTF, ENABLE);
 	
-  // Конфигурация выводов UART3
+  // Configure outputs UART3
 	PORT_StructInit (&PortInitStructure);
   PortInitStructure.PORT_PULL_UP 		= PORT_PULL_UP_OFF;
   PortInitStructure.PORT_PULL_DOWN 	= PORT_PULL_DOWN_OFF;
@@ -22,41 +23,41 @@ void m_UART_Init (uint32_t UART_Speed)
   PortInitStructure.PORT_SPEED 			= PORT_SPEED_MAXFAST;
   PortInitStructure.PORT_MODE 			= PORT_MODE_DIGITAL;
 
-  // PF0 (UART3_RX) - вход
+  // PF0 (UART3_RX) - input
   PortInitStructure.PORT_OE 				= PORT_OE_IN;
   PortInitStructure.PORT_Pin 				= PORT_Pin_0;
   PORT_Init (MDR_PORTF, &PortInitStructure);
   
-  // PF1 (UART3_TX) - выход
+  // PF1 (UART3_TX) - output
   PortInitStructure.PORT_OE 				= PORT_OE_OUT;
   PortInitStructure.PORT_Pin 				= PORT_Pin_1;
   PORT_Init (MDR_PORTF, &PortInitStructure);	
 
-  // Задать коэффициент деления частоты для UART2 
+  // Divider of frequency 
   UART_BRGInit (UART, UART_HCLKdiv1);
 
-  // Деинициализация UART3
+  // Deinint before configure
   UART_DeInit (UART);
 
-  // Конфигурация UART 
-  UARTInitStructure.UART_BaudRate             = UART_Speed;              // Скорость обмена: 115200 бит/с
-  UARTInitStructure.UART_WordLength           = UART_WordLength8b;   // Количество бит в символе: 8
-  UARTInitStructure.UART_StopBits             = UART_StopBits2;      // Количество стоповых бит: 2
-  UARTInitStructure.UART_Parity               = UART_Parity_No;      // Контроль четности: отсутствует 
-  UARTInitStructure.UART_FIFOMode             = UART_FIFO_OFF;       // Режим FIFO выключен
-  UARTInitStructure.UART_HardwareFlowControl  = UART_HardwareFlowControl_RXE | // Аппаратный контроль передачи: включить приемник и передатчик 
+  // Configure UART
+  UARTInitStructure.UART_BaudRate             = UART_Speed;             // Speed: 
+  UARTInitStructure.UART_WordLength           = UART_WordLength8b;   		// Number of bits in data: 8
+  UARTInitStructure.UART_StopBits             = UART_StopBits2;      		// Number of stopBits: 2
+  UARTInitStructure.UART_Parity               = UART_Parity_No;      		// on/off Parity check
+  UARTInitStructure.UART_FIFOMode             = UART_FIFO_OFF;       		// on/off FIFO buffer
+  UARTInitStructure.UART_HardwareFlowControl  = UART_HardwareFlowControl_RXE | // Hardware flow control for RX and TX
 	                                              UART_HardwareFlowControl_TXE;    
   UART_Init(UART, &UARTInitStructure);
 
-  // Разрешить прерывание по приему символа
+  // Enable IRQ by receiving symbol
   UART_ITConfig (UART, UART_IT_RX, ENABLE);
   
-  // Задать приоритет выше, чем у планировщика задач RTX
+  // Priority is higher then RX
   NVIC_SetPriority (UART_IRQn, 0x01); 	  
 
-  // Разрешить прерывания от UART
+  // enable IRQ
   NVIC_EnableIRQ (UART_IRQn); 
-  // Разрешить работу UART
+  // Enable working of UART
   UART_Cmd (UART, ENABLE);		
 
 }

@@ -47,7 +47,7 @@ C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32
 C:\Users\user\AppData\Local\Arm\Packs\Keil\MDR1986BExx\2.0.3\Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h(47): warning:  #1215-D: #warning directive: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
       #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
 prj_files\src\main.c(40): warning:  #223-D: function "sprintf" declared implicitly
-  	sprintf(adcString,"CPU Freq %2d MHz",freqCPU_MHz);
+  	sprintf(adcString,"CPU Freq %2d MHz",FREQ_CPU);
 prj_files\src\main.c: 10 warnings, 0 errors
 linking...
 Program Size: Code=5456 RO-data=2048 RW-data=8 ZI-data=5216  
@@ -84,30 +84,30 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:2.0.3
-      Include file:  Libraries\CMSIS\MDR32Fx\CoreSupport\CM3\core_cm3.h
       Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\startup_MDR1901VC1T.S
       Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.h
       Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
-      Include file:  Libraries\SPL\MDR32Fx\inc\IRQ_Handler_Template\MDR1901VC1_IT.h
-      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
       Include file:  Libraries\SPL\MDR32Fx\MDR32F9Qx_config.h
       Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.c
+      Include file:  Libraries\SPL\MDR32Fx\inc\IRQ_Handler_Template\MDR1901VC1_IT.h
+      Include file:  Libraries\CMSIS\MDR32Fx\CoreSupport\CM3\core_cm3.h
+      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
 
    * Component: Keil::Drivers:PORT:2.0.3
-      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_port.c
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h
+      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_port.c
 
    * Component: Keil::Drivers:RST_CLK:2.0.3
-      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_rst_clk.c
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_rst_clk.h
+      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_rst_clk.c
 
    * Component: Keil::Drivers:TIMER:2.0.3
-      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_timer.c
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h
+      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_timer.c
 
    * Component: Keil::Drivers:UART:2.0.3
-      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_uart.c
+      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

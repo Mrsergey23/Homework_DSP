@@ -9,6 +9,10 @@
 #include "MDR32F9Qx_timer.h"
 #include "MDR32F9Qx_rst_clk.h"
 #include "uLED_fun.h"
+#define TIMER				MDR_TIMER1
+#define TIMER_IRQ		TIMER1_IRQn
+#define FREQ_CPU			  72    	// MHz
+#define TIMER_PERIOD		5			  // S
 /* m_setUpFreq Description.
 This function set up required frequency of CPU
 function name: m_setUpFreq;
@@ -25,16 +29,16 @@ void m_setUpFreq(uint8_t req_CPUfreq)
 	//assert_param(req_CPUfreq %8 == 0);
 		// Switch on all ports
 	MDR_RST_CLK->PER_CLOCK = 0xFFFFFFFF;
-	MDR_RST_CLK->HS_CONTROL = RST_CLK_HS_CONTROL_HSE_ON;                  				// HSE_ON = 8MHz now
-	while (MDR_RST_CLK->CLOCK_STATUS == 0x00) __NOP();          									// Wait the HSE is ready working
-		/* Setting up source and coefficient of multiplier PLL
+	MDR_RST_CLK->HS_CONTROL = RST_CLK_HS_CONTROL_HSE_ON;                  									// HSE_ON = 8MHz now
+	while (MDR_RST_CLK->CLOCK_STATUS == 0x00) __NOP();          														// Wait the HSE is ready working
+		/* Setting up source and coefficient of multiplier PLL	
 		first part of this (before |) is decription of coefficient, that depends of req_freq 
 		look register MDR_RST_CLK->PLL_CONTROL. 8 MHz(quartz)*(PLL_CPU_MUL+1) = req_freq */	
 	MDR_RST_CLK->PLL_CONTROL |= (((req_CPUfreq/8-1)<<8)|RST_CLK_PLL_CONTROL_PLL_CPU_ON) ; 
 	while ( (MDR_RST_CLK->CLOCK_STATUS & RST_CLK_CLOCK_STATUS_PLL_CPU_RDY) == 0);           // Wait for start of PLL_CPU
-	MDR_EEPROM->CMD = 0x0018;                                     // Delay 3 cycle
-		//RST_CLK->CPU_CLOCK = 0x0006;                            // HSI
-	MDR_RST_CLK->CPU_CLOCK = 3|1<<2|0<<7|1<<8;                 // look MDR_RST_CLK->CPU_CLOCK and look at image in project folder ("Diagram of Clock settings")
+	MDR_EEPROM->CMD = 0x0018;                                     													// Delay 3 cycle
+		//RST_CLK->CPU_CLOCK = 0x0006;                           															// HSI
+	MDR_RST_CLK->CPU_CLOCK = 3|1<<2|0<<7|1<<8;  // look MDR_RST_CLK->CPU_CLOCK and look at image in project folder ("Diagram of Clock settings")
 }
 
 
@@ -48,29 +52,29 @@ void m_setUpFreq(uint8_t req_CPUfreq)
 	output: nothing.
 */
 void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq);
-void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq) //Благодаров 141 стр.
+void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq) 
 {
 	TIMER_CntInitTypeDef TIM_CntInit;
-	TIMER_DeInit (MDR_TIMER1);
+	TIMER_DeInit (TIMER);
 	MDR_RST_CLK->TIM_CLOCK = RST_CLK_TIM_CLOCK_TIM1_CLK_EN; //Timer clock enable
-//	RST_CLK_PCLKcmd (RST_CLK_PCLK_TIMER1, ENABLE);
-	TIMER_BRGInit (MDR_TIMER1, TIMER_HCLKdiv2);
+	//RST_CLK_PCLKcmd (RST_CLK_PCLK_TIMER1, ENABLE);
+	TIMER_BRGInit (TIMER, TIMER_HCLKdiv1);
 	/* About Timer_Prescaler
 	We need to set up Timer's counter in ms. To find the  
 	prescaler we need solve simply equastion:
 	req_CPUfreq (Hz)/TIMER_Prescaler = 1000 ms = 1 s
 	Then TIMER_Prescaler = req_CPUfreq[Hz]*1000,
 	but TIMER_Prescaler max value 65535 (uint16_t), then 
-	we use TIMER_HCLKdiv2, for reduce value TIMER_Prescaler,
+	we multiply only to 500, and then our maximum is value here is 40000
 	then TIMER_Prescaler = req_CPUfreq[Hz]*1000/2
 	*/
 	TIM_CntInit.TIMER_Prescaler = (req_CPUfreq*500);
-	TIM_CntInit.TIMER_Period = req_time*500; // due to input in seconds, but TIMER_Period in ms
-	TIMER_CntInit(MDR_TIMER1, &TIM_CntInit);
-	NVIC_EnableIRQ(TIMER1_IRQn);
-	NVIC_SetPriority(TIMER1_IRQn, 0);
-	TIMER_ITConfig(MDR_TIMER1, TIMER_STATUS_CNT_ZERO, ENABLE);
-	TIMER_Cmd(MDR_TIMER1, ENABLE);
+	TIM_CntInit.TIMER_Period = req_time*500; // due to input in seconds, but TIMER_Period in ms and devide, because need half of period
+	TIMER_CntInit(TIMER, &TIM_CntInit);
+	NVIC_EnableIRQ(TIMER_IRQ);
+	NVIC_SetPriority(TIMER_IRQ, 0);
+	TIMER_ITConfig(TIMER, TIMER_STATUS_CNT_ZERO, ENABLE);
+	TIMER_Cmd(TIMER, ENABLE);
 }
 
 
@@ -81,11 +85,11 @@ void Delay(__IO uint32_t nCount)
 
 int main()
 {
-	uint8_t freqCPU_MHz = 80;
-	uint8_t timerPeriod = 7 ;
-	m_setUpFreq(freqCPU_MHz);
+//	uint8_t freqCPU_MHz = 72;
+//	uint8_t timerPeriod = 5 ;
+	m_setUpFreq(FREQ_CPU);
 	m_initLEDs();
-	m_setUpTimer(timerPeriod, freqCPU_MHz);
+	m_setUpTimer(TIMER_PERIOD, FREQ_CPU);
 
 	while(1){}
 }
@@ -111,5 +115,4 @@ void TIMER1_IRQHandler (void)
 		m_LED_toggle(PORT_Pin_15);
 		TIMER_ClearITPendingBit(MDR_TIMER1, TIMER_STATUS_CNT_ZERO);
 	}
-	
 }

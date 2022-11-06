@@ -4,16 +4,16 @@
 // Device: Development board Milandr 1901ВЦ1Т
 // File: uLCD_func.c 
 // Function/Option:  Set up for LCD screen MT–12864J 
-//              due to driver "Ангстрем" К145ВГ10 (analog Samsung KS0108)  
+//              due to driver "Angstrem" К145ВГ10 (analog Samsung KS0108)  
   *********************************************************************************** */
-
+// look datasheet MT–12864J 
 #include "uLCD_func.h"
 #include "MDR32F9Qx_rst_clk.h"
 #include "MDR32F9Qx_port.h"
-// Строка, выводимая на индикатор при инициализации
-static const char* init_string = "   \xC7\xC0\xCE\"\xCC\xE8\xEB\xE0\xED\xE4\xF0\"";  // ЗАО "Миландр"
+// Iniitial string
+static const char* init_string = "   \xC7\xC0\xCE\"\xCC\xE8\xEB\xE0\xED\xE4\xF0\"";  // "Milandr" in Russian
 
-// Изображение, выводимое на индикатор при инициализации (Эмблема "Миландра")
+// Initial image, like example ("Milandr" logo)
 static const uint8_t init_image[32] = 
 {
 	254, 254, 254, 254, 254, 126,  30,   6,
@@ -22,46 +22,45 @@ static const uint8_t init_image[32] =
 	 96, 112, 120, 124,  65,  71,  127,  127
 };
 
-
-// Инициализация ЖКИ
+// Init MLT screen for working
 void m_MLT_Init (void)
 {
-  // Разрешить тактирование требуемых портов
+  // Enable clock to required Ports, don't need, because init clock all Ports in CLK library
   //RST_CLK_PCLKcmd (RST_CLK_PCLK_PORTA | RST_CLK_PCLK_PORTE | RST_CLK_PCLK_PORTC, ENABLE);	
 	
-	// Инициализировать выводы МК для работы с ЖКИ
+	// Init screen pins 
 	m_MLT_Pin_Cfg ();
 	
-	// Инициализировать драйвер ЖКИ 
+	// Init screen driver 
 	m_MLT_LCD_Init();
 	
 
-	// Дождаться завершения операции с дисплеем 1
+	// Delay finishing operations with 1st display
 	while (m_MLT_Read_Status(1) & 0x80);
-	// Включить дисплей 1  
+	// Turn on display 1   
 	m_MLT_Disp_On (1);
 	
-	// Дожаться завершения операции с дисплеем 2
+	// Delay finishing operations with 2st display
 	while (m_MLT_Read_Status(2) & 0x80);
-	// Включить дисплей 2 
+	// Turn on display 2
 	m_MLT_Disp_On (2);
 
-	// Очистить дисплей 1 
+	// Clear all display 1 
 	m_MLT_Clear_Chip (1);
-	// Очистить дисплей 2
+	// Clear all display 2
 	m_MLT_Clear_Chip (2);	
 	
-	// Вывести начальное сообщение и рисунок
+	// Here we can show initial image and string
   //m_MLT_Put_String (init_string, 1);	
 	//m_MLT_Put_Image (init_image, 0, 0, 1, 1);
 
 }
 
 
-// Инициализация выводов МК для работы с ЖКИ
+// Configure screen pins
 void m_MLT_Pin_Cfg (void)
 {
-	// Структура данных для инициализации портов
+	// Structure for configure port 
 	PORT_InitTypeDef PortInit;
 	
 		//---------   IN Pins -----------
@@ -97,18 +96,18 @@ void m_MLT_Pin_Cfg (void)
 }
 
 
-// Инициализация драйвера ЖКИ
+// Screen driver init
 void m_MLT_LCD_Init(void)
 {
 	uint8_t s1,s2;
-	// Сформировать сигнал RESET
+	// Reset signal 
 	m_MLT_Clr_Res_Pin;
 	m_MLT_Delay(200);
 	
 	m_MLT_Set_Res_Pin;
 	m_MLT_Delay(5);
 
-	// Дождаться окончания инициализации
+	// Wait finishing init
 	do
 	{
 		s1 = m_MLT_Read_Status(1) & 0x90;
@@ -117,14 +116,14 @@ void m_MLT_LCD_Init(void)
 	while (s1 != 0x00 && s2 != 0x00);
 }
 
-// Выставить данные на шину данных
+// Put data to data bus 
 void m_MLT_Set_Data_Bits (uint8_t value)
 {
 	MDR_PORTA->RXTX &= 0xFF00;
 	MDR_PORTA->RXTX |= value; 
 }
 
-// Задержка 
+// Screen Delay
 void m_MLT_Delay (uint32_t value)
 {
 	volatile uint32_t x = value;
@@ -132,57 +131,57 @@ void m_MLT_Delay (uint32_t value)
 	while ((x--) != 0);
 }
 
-// Получить статус операции
+// Get status of operation
 uint8_t m_MLT_Read_Status (uint8_t Chip)
 {
   uint8_t data;
 
-	// Настроить шину данных на прием данных
+	// Configure data bus for receiving 
 	m_MLT_Data_Dir_Input_PA;
 	
 	
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
+	// If we choosed display 1, then set E1
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+	// If we choosed display 2, then set E2
 	else 
   {
     m_MLT_Set_E2_Pin;
   }
 
-	// Сбросить вывод А0
+	// Reset pin A0
 	m_MLT_Clr_A0_Pin;
 
-	// Установить вывод RW (прием данных)
+	// Set OUTPUT RW to transmitting
   m_MLT_Set_RW_Pin;
 	m_MLT_Delay(5);
 	
-	// Установить вывод E
+	// Set pin E
 	m_MLT_Set_Stb_Pin;
 	m_MLT_Delay(5);
 	
-	// Прочитать данные
+	// Read data
 	data = m_MLT_Output_Data;
 	m_MLT_Delay(5);
 	
-	// Сбросить вывод E
+	// Reset pin E
 	m_MLT_Clr_Stb_Pin;
 	m_MLT_Delay(5);
 	
-	// Сбросить вывод A0
+	// Reset pin A0
 	m_MLT_Clr_A0_Pin;
 
-	// Сбросить вывод RW
+	// Reset pin RW
 	m_MLT_Clr_RW_Pin;
 
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
+	// If we choosed display 1, then reset E1 
 	if (Chip == 1) 
 	{
     m_MLT_Clr_E1_Pin;
   }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
+	// If we choosed display 2, then reset E1
 	else 
   {
     m_MLT_Clr_E2_Pin;
@@ -191,31 +190,31 @@ uint8_t m_MLT_Read_Status (uint8_t Chip)
 	return data;
 }
 
-// Включить дисплей
+// Disp turn on
 void m_MLT_Disp_On (uint8_t Chip)
 {
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
+	// If we choosed display 1, then set E1
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+	// If we choosed display 2, then set E2
 	else 
   {
     m_MLT_Set_E2_Pin;
   }
 
-	// Сбросить вывод А0
+	// Reset A0
 	m_MLT_Clr_A0_Pin;
 
-	// Сбросить вывод RW (передача данных)
+	// Reset RW
 	m_MLT_Clr_RW_Pin;
 	m_MLT_Delay(5);
 	
 	m_MLT_Data_Dir_Output_PA;
 	
 	
-	// Выдать данные на шину
+	// Push data to data bus
 	m_MLT_Set_Data_Bits (0x3F);
 	m_MLT_Delay(5);
 
@@ -232,28 +231,26 @@ void m_MLT_Disp_On (uint8_t Chip)
 
 	m_MLT_Data_Dir_Input_PA;
 	 
-
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
 	if (Chip == 1) 
 	{
     m_MLT_Clr_E1_Pin;
   }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
+
 	else 
   {
     m_MLT_Clr_E2_Pin;
   }
 }
 
-// Включить и выключить дисплей
+// Turn off display
 void m_MLT_Disp_Off (uint8_t Chip)
 {
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
+
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+
 	else 
   {
     m_MLT_Set_E2_Pin;
@@ -283,27 +280,26 @@ void m_MLT_Disp_Off (uint8_t Chip)
 	m_MLT_Data_Dir_Input_PA;
 
 	
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
 	if (Chip == 1) 
 	{
     m_MLT_Clr_E1_Pin;
   }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
+
 	else 
   {
     m_MLT_Clr_E2_Pin;
   }
 }
 
-// Задать текущую страницу
+// Set current Page
 void m_MLT_Set_Page (uint8_t Chip, uint8_t page)
 {
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
+
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+
 	else 
   {
     m_MLT_Set_E2_Pin;
@@ -332,27 +328,26 @@ void m_MLT_Set_Page (uint8_t Chip, uint8_t page)
 
 	m_MLT_Clr_RW_Pin;
 
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
+
 	if (Chip == 1) 
 	{
     m_MLT_Clr_E1_Pin;
   }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
+
 	else 
   {
     m_MLT_Clr_E2_Pin;
   }
 }
 
-// Задать текущий адрес
+// Set current Adress
 void m_MLT_Set_Address (uint8_t Chip, uint8_t address)
 {
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
+
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
 	else 
   {
     m_MLT_Set_E2_Pin;
@@ -365,7 +360,6 @@ void m_MLT_Set_Address (uint8_t Chip, uint8_t address)
 	
 	m_MLT_Data_Dir_Output_PA;
 	 
-	
 	m_MLT_Set_Data_Bits (0x40 | address);
 	m_MLT_Delay(5);
 	
@@ -376,33 +370,28 @@ void m_MLT_Set_Address (uint8_t Chip, uint8_t address)
 	m_MLT_Delay(5);
 	
 	m_MLT_Data_Dir_Input_PA;
-	 
 
 	m_MLT_Clr_A0_Pin;
 
 	m_MLT_Clr_RW_Pin;
 
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
-	if (Chip == 1) 
-	{
-    m_MLT_Clr_E1_Pin;
-  }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
-	else 
-  {
-    m_MLT_Clr_E2_Pin;
-  }
-}
-
-// Записать данные в ЖКИ
-void m_MLT_Write_Data (uint8_t Chip, uint8_t data)
-{
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+	else 
+  {
+    m_MLT_Set_E2_Pin;
+  }
+}
+
+// Write data to Screen
+void m_MLT_Write_Data (uint8_t Chip, uint8_t data)
+{
+	if (Chip == 1) 
+	{
+    m_MLT_Set_E1_Pin;
+  }
 	else 
   {
     m_MLT_Set_E2_Pin;
@@ -432,29 +421,25 @@ void m_MLT_Write_Data (uint8_t Chip, uint8_t data)
 
 	m_MLT_Clr_RW_Pin;
 
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
-	if (Chip == 1) 
-	{
-    m_MLT_Clr_E1_Pin;
-  }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
-	else 
-  {
-    m_MLT_Clr_E2_Pin;
-  }
-}
-
-// Прочитать данные с ЖКИ
-uint8_t m_MLT_Read_Data (uint8_t Chip)
-{
-  uint8_t data = 0;
-
-	// Если выбран дисплей 1, то установить вывод Е1 (дисплей 1 выбран)
 	if (Chip == 1) 
 	{
     m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то установить вывод Е2 (дисплей 2 выбран)
+	else 
+  {
+    m_MLT_Set_E2_Pin;
+  }
+}
+
+// Read data from screen
+uint8_t m_MLT_Read_Data (uint8_t Chip)
+{
+  uint8_t data = 0;
+
+	if (Chip == 1) 
+	{
+    m_MLT_Set_E1_Pin;
+  }
 	else 
   {
     m_MLT_Set_E2_Pin;
@@ -484,21 +469,19 @@ uint8_t m_MLT_Read_Data (uint8_t Chip)
 
 	m_MLT_Clr_RW_Pin;
 
-	// Если выбран дисплей 1, то сбросить вывод Е1 (дисплей 1 НЕ выбран)
 	if (Chip == 1) 
 	{
-    m_MLT_Clr_E1_Pin;
+    m_MLT_Set_E1_Pin;
   }
-	// Если выбран дисплей 2, то сбросить вывод Е2 (дисплей 1 НЕ выбран)
 	else 
   {
-    m_MLT_Clr_E2_Pin;
+    m_MLT_Set_E2_Pin;
   }
 
 	return (data);
 }
 
-// Очистить страницу
+// Clear page
 void m_MLT_Clear_Page (uint8_t Chip, uint8_t Page)
 {
   int32_t i;
@@ -515,7 +498,7 @@ void m_MLT_Clear_Page (uint8_t Chip, uint8_t Page)
 	}
 }
 
-// Очистить дисплей
+// Clear display
 void m_MLT_Clear_Chip (uint8_t Chip)
 {
   int32_t i;
@@ -524,12 +507,12 @@ void m_MLT_Clear_Chip (uint8_t Chip)
 		m_MLT_Clear_Page (Chip, i);
 }
 
-// Вывести символ
+// Show the Char
 void m_MLT_Put_Char (uint8_t symbol, int32_t X, int32_t Y)
 {
   int32_t chp, page, adr;
   int32_t i;
-	int32_t symbol_image_index;  // Индекс элемента в массиве шрифта, с которого начинается изображение данного символа.
+	int32_t symbol_image_index;  // index of element from array font, first index of symbols
 
 	chp  = (int32_t)(X / 8) + 1;
 	page = Y;
@@ -538,15 +521,15 @@ void m_MLT_Put_Char (uint8_t symbol, int32_t X, int32_t Y)
 	m_MLT_Set_Page (chp, page);
 	m_MLT_Set_Address (chp, adr);
 	
-	// Проверить, чтобы символ не выходил за диапазон, определенный в шрифте.
+	// Check, that symbol is not out of boards.
 	if (symbol >= MLT_FONT_MIN_CODE && symbol <= MLT_FONT_MAX_CODE)
 	{
 	  symbol_image_index = (((uint32_t) symbol) - MLT_FONT_MIN_CODE) * 8;
 	}
-	// Символ вне диапазона
+	// If overflow
 	else
 	{
-	  symbol_image_index = 0;  // Выводим самый первый символ, как правило,- пробел.
+	  symbol_image_index = 0;  // Show first symbol
   }
 	
 	for (i = symbol_image_index; i < symbol_image_index + 8; i++)
@@ -558,45 +541,45 @@ void m_MLT_Put_Char (uint8_t symbol, int32_t X, int32_t Y)
 
 }
 
-// Вывести строку
+// Show String
 void m_MLT_Put_String (const char* str, int32_t Y)
 {
   int32_t i;
 
 	for (i = 0; i < m_MLT_SCREEN_WIDTH_SYMBOLS; i++)
 	{
-	  // Достигнут конец строки
+	  // reach the end of string
 		if (!str[i])
       break;
 
-    m_MLT_Put_Char (str[i], i, Y); // Вывести символ
+    m_MLT_Put_Char (str[i], i, Y); // show char from string
   }
 	
 	for (; i < m_MLT_SCREEN_WIDTH_SYMBOLS; i++)
 	{
- 	  m_MLT_Put_Char (32, i, Y);  // Вывести пробел
+ 	  m_MLT_Put_Char (32, i, Y);  // put space
   }
 }
 
-// Прокрутить строку на cnt шагов и вывести ее
+// Scroll string to cnt steps
 void m_MLT_Scroll_String (const char* str, int32_t Y, int32_t cnt)
 
 {
   int32_t i, j, L;
 	char c;
-	char s[m_MLT_SCREEN_WIDTH_SYMBOLS + 1]; // Строка размером с ЖКИ, которую получим в результате прокрутки.
+	char s[m_MLT_SCREEN_WIDTH_SYMBOLS + 1]; // Size depend on screen size
   
-	L = strlen(str); // Длина исходной строки
-	s[m_MLT_SCREEN_WIDTH_SYMBOLS] = 0;      // Получаемую строку надо закрыть финишным нулем
+	L = strlen(str); // length of input string
+	s[m_MLT_SCREEN_WIDTH_SYMBOLS] = 0;      // Add '\0' character is a string terminating symbol
 	
-	// Если исходная строка пустая 
+	// If strig is empty
 	if (!L)
 		return; 
 
-  // Если пытаемся несколько раз обойти вокруг Земли :-)	
+  // if try to do several cycle	
 	cnt %= m_MLT_SCREEN_WIDTH_SYMBOLS;
 
-	// Если исходная строка короче экрана
+	// If current string is shorter then width screen
 	if (L < m_MLT_SCREEN_WIDTH_SYMBOLS)
 		for (i = 0; i < m_MLT_SCREEN_WIDTH_SYMBOLS; i++)
 		{
@@ -605,16 +588,16 @@ void m_MLT_Scroll_String (const char* str, int32_t Y, int32_t cnt)
 			if (j >= m_MLT_SCREEN_WIDTH_SYMBOLS)
 				j %= m_MLT_SCREEN_WIDTH_SYMBOLS;
 			
-			// Если исходная строка еще не кончилась
+			// If current string doesnt't end
 			if (j < L)  			
 				c = str[j];
-			// Если исходная строка уже кончилась
+			// If current string have ended yet
 			else
-				c = 32; // Пробел
+				c = 32; // space
 			
 			s[i] = c;
 		}
-	// Если исходная строка длиннее экрана
+	// If current string is longer then width screen
 	else
 		for (i = 0; i < m_MLT_SCREEN_WIDTH_SYMBOLS; i++)
 		{
@@ -626,12 +609,12 @@ void m_MLT_Scroll_String (const char* str, int32_t Y, int32_t cnt)
       s[i] = str[j];
 		}
 	
-	// Вывести прокрученную строку на ЖКИ	
+	// Show scroll string
 	m_MLT_Put_String (s, Y);
 }
 
 
-// Вывести изображение
+// Show Image
 void m_MLT_Put_Image (const uint8_t* image, int32_t top, int32_t left, int32_t bottom, int32_t right)
 {
 	int32_t i, j, y;

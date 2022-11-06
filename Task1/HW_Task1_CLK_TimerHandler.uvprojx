@@ -394,11 +394,6 @@
           <GroupName>Libs</GroupName>
           <Files>
             <File>
-              <FileName>uLED_fun.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\project_files\inc\uLED_fun.h</FilePath>
-            </File>
-            <File>
               <FileName>u_LED_func.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\project_files\src\u_LED_func.c</FilePath>
