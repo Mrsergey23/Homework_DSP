@@ -9,7 +9,7 @@
 	output: nothing.
 */
 
-void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq) //Благодаров 141 стр.
+void m_setUpTimer(float req_time, uint8_t req_CPUfreq) //Благодаров 141 стр.
 {
 	TIMER_CntInitTypeDef TIM_CntInit;
 	TIMER_DeInit (TIMER);
@@ -26,10 +26,10 @@ void m_setUpTimer(uint8_t req_time, uint8_t req_CPUfreq) //Благодаров 141 стр.
 	then TIMER_Prescaler = req_CPUfreq[Hz]*1000/2
 	*/
 	TIM_CntInit.TIMER_Prescaler = (req_CPUfreq*500);
-	TIM_CntInit.TIMER_Period = req_time*500; // due to input in seconds, but TIMER_Period in ms and devide, because need half of period
+	TIM_CntInit.TIMER_Period = req_time*1000; // due to input in seconds, but TIMER_Period in ms and devide, because need half of period
 	TIMER_CntInit(TIMER, &TIM_CntInit);
-	NVIC_EnableIRQ(TIMER_IRQ);
-	NVIC_SetPriority(TIMER_IRQ, 0);
+	//NVIC_EnableIRQ(TIMER_IRQ);
+	//NVIC_SetPriority(TIMER_IRQ, 0);
 	TIMER_ITConfig(TIMER, TIMER_STATUS_CNT_ZERO, ENABLE);
 	TIMER_Cmd(TIMER, ENABLE);
 }

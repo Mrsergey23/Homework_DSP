@@ -44,7 +44,7 @@ void m_UART_Init (uint32_t UART_Speed)
   UARTInitStructure.UART_WordLength           = UART_WordLength8b;   		// Number of bits in data: 8
   UARTInitStructure.UART_StopBits             = UART_StopBits1;      		// Number of stopBits: 2
   UARTInitStructure.UART_Parity               = UART_Parity_No;      		// on/off Parity check
-  UARTInitStructure.UART_FIFOMode             = UART_FIFO_OFF;       		// on/off FIFO buffer
+  UARTInitStructure.UART_FIFOMode             = UART_FIFO_ON;       		// on/off FIFO buffer
   UARTInitStructure.UART_HardwareFlowControl  = UART_HardwareFlowControl_RXE | // Hardware flow control for RX and TX
 	                                              UART_HardwareFlowControl_TXE;    
   UART_Init(UART, &UARTInitStructure);

@@ -22,25 +22,11 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 C:\Keil_v5\Test\Homework_DSP\Task2\HW_Task2_UART_LCD.uvprojx
-Project File Date:  11/06/2022
+Project File Date:  11/18/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Rebuild target 'Main_Group'
-prj_files/src/uUART_func.c(2): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-prj_files/src/uUART_func.c(3): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_uart.h(47): warning: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead" [-W#warnings]
-    #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
-     ^
-3 warnings generated.
-compiling uUART_func.c...
-compiling uRST_CLK_init.c...
+Build target 'Main_Group'
 prj_files/src/main.c(13): warning: In file included from...
 ./prj_files/inc\uLED_fun.h(3): warning: In file included from...
 C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
@@ -49,99 +35,32 @@ C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32
 C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
     #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
      ^
-prj_files/src/main.c(14): warning: In file included from...
+prj_files/src/main.c(15): warning: In file included from...
 C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_timer.h(91): warning: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead" [-W#warnings]
     #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
      ^
-prj_files/src/main.c(15): warning: In file included from...
+prj_files/src/main.c(16): warning: In file included from...
 C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_uart.h(47): warning: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead" [-W#warnings]
     #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
      ^
-prj_files/src/main.c(62): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+prj_files/src/main.c(44): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
         m_MLT_Put_String ("<C6><E0><F0><EA><E8><F5> <D1><E5><F0><E3><E5><E9>",0);
                            ^~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~
-prj_files/src/main.c(63): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+prj_files/src/main.c(45): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
         m_MLT_Put_String ("<C0><ED><E4><F0><E5><E5><E2><E8><F7>",1);
                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-prj_files/src/main.c(64): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+prj_files/src/main.c(46): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
         m_MLT_Put_String ("<D0><CB>1-113",2);
                            ^~~~~~~~
-prj_files/src/main.c(65): warning: implicitly declaring library function 'sprintf' with type 'int (char *, const char *, ...)' [-Wimplicit-function-declaration]
+prj_files/src/main.c(47): warning: implicitly declaring library function 'sprintf' with type 'int (char *, const char *, ...)' [-Wimplicit-function-declaration]
         sprintf(adcString,"CPU Freq %d MHz",FREQ_CPU); // convert number to string 
         ^
-prj_files/src/main.c(65): note: include the header <stdio.h> or explicitly provide a declaration for 'sprintf'
+prj_files/src/main.c(47): note: include the header <stdio.h> or explicitly provide a declaration for 'sprintf'
 8 warnings generated.
 compiling main.c...
-prj_files/src/uLCD_func.c(12): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-2 warnings generated.
-compiling uLCD_func.c...
-prj_files/src/u_LED_func.c(1): warning: In file included from...
-./prj_files/inc\uLED_fun.h(3): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-2 warnings generated.
-compiling u_LED_func.c...
-prj_files/src/uTimer_init.c(2): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_timer.h(91): warning: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead" [-W#warnings]
-    #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
-     ^
-1 warning generated.
-compiling uTimer_init.c...
-RTE/Device/MDR1901VC1/system_MDR1901VC1T.c(22): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1250): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD_Pos" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD_Pos"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1255): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD_Pos" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD_Pos will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD_Pos"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1271): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_CPU_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_CPU_RLD"
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/CMSIS/MDR32Fx/DeviceSupport/MDR1901VC1T/inc\MDR1901VC1T.h(1276): warning: "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD" [-W#warnings]
-    #warning "Legacy v1.5.3: RST_CLK_PLL_CONTROL_PLL_DSP_PLD will be replaced by RST_CLK_PLL_CONTROL_PLL_DSP_RLD"
-     ^
-4 warnings generated.
-compiling system_MDR1901VC1T.c...
-assembling startup_MDR1901VC1T.S...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_port.c(23): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(225): warning: "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus." [-W#warnings]
-    #warning "Legacy v1.5.3: @ref BitAction enumeration (Bit_RESET, Bit_SET) will be removed. Use @ref BitStatus."
-     ^
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_port.h(286): warning: "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction" [-W#warnings]
-    #warning "Legacy v1.5.3: BitAction enumeration (Bit_RESET, Bit_SET) will be removed. In PORT_WriteBit() function use @ref BitStatus instead of @ref BitAction"
-     ^
-2 warnings generated.
-compiling MDR32F9Qx_port.c...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_rst_clk.c(37): warning: "Legacy v1.5.3: Clock frequencies and timeouts will be removed from MDR32F9Qx_rst_clk.c. Use definitions in MDR32F9Qx_config.h" [-W#warnings]
-    #warning "Legacy v1.5.3: Clock frequencies and timeouts will be removed from MDR32F9Qx_rst_clk.c. Use definitions in MDR32F9Qx_config.h"
-     ^
-1 warning generated.
-compiling MDR32F9Qx_rst_clk.c...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_uart.c(23): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_uart.h(47): warning: "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead" [-W#warnings]
-    #warning "Legacy v1.5.3: BaudRateStatus enumeration is deprecated. Use @ref ErrorStatus instead"
-     ^
-1 warning generated.
-compiling MDR32F9Qx_uart.c...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/src/MDR32F9Qx_timer.c(23): warning: In file included from...
-C:/Users/user/AppData/Local/Arm/Packs/Keil/MDR1986BExx/2.0.3/Libraries/SPL/MDR32Fx/inc\MDR32F9Qx_timer.h(91): warning: "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead" [-W#warnings]
-    #warning "Legacy v1.5.3: TIMER_EvSrc_None is deprecated and will be removed, use TIMER_EvSrc_TIM_CLK instead"
-     ^
-1 warning generated.
-compiling MDR32F9Qx_timer.c...
 linking...
-Program Size: Code=4284 RO-data=2016 RW-data=4 ZI-data=5224  
-".\Objects\HW_Task2_UART_LCD.axf" - 0 Error(s), 25 Warning(s).
+Program Size: Code=5048 RO-data=2016 RW-data=4 ZI-data=5240  
+".\Objects\HW_Task2_UART_LCD.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -174,14 +93,14 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil::Device:Startup:2.0.3
-      Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.c
-      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.h
+      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
       Include file:  Libraries\CMSIS\MDR32Fx\CoreSupport\CM3\core_cm3.h
       Include file:  Libraries\SPL\MDR32Fx\MDR32F9Qx_config.h
-      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\inc\MDR1901VC1T.h
-      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
       Include file:  Libraries\SPL\MDR32Fx\inc\IRQ_Handler_Template\MDR1901VC1_IT.h
+      Source file:   Libraries\SPL\MDR32Fx\src\IRQ_Handler_Template\MDR1901VC1_IT.c
       Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\startup_MDR1901VC1T.S
+      Source file:   Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.c
+      Include file:  Libraries\CMSIS\MDR32Fx\DeviceSupport\MDR1901VC1T\startup\arm\system_MDR1901VC1T.h
 
    * Component: Keil::Drivers:PORT:2.0.3
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_port.h
@@ -192,13 +111,13 @@ Package Vendor: Keil
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_rst_clk.c
 
    * Component: Keil::Drivers:TIMER:2.0.3
-      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h
       Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_timer.c
+      Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_timer.h
 
    * Component: Keil::Drivers:UART:2.0.3
-      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_uart.c
       Include file:  Libraries\SPL\MDR32Fx\inc\MDR32F9Qx_uart.h
-Build Time Elapsed:  00:00:02
+      Source file:   Libraries\SPL\MDR32Fx\src\MDR32F9Qx_uart.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

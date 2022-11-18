@@ -24,6 +24,6 @@ void m_setUpFreq(uint8_t req_CPUfreq)
 	while ( (MDR_RST_CLK->CLOCK_STATUS & RST_CLK_CLOCK_STATUS_PLL_CPU_RDY) == 0);           // Wait for start of PLL_CPU
 	MDR_EEPROM->CMD = 0x0018;                                     													// Delay 3 cycle
 		//RST_CLK->CPU_CLOCK = 0x0006;                           															// HSI
-	MDR_RST_CLK->CPU_CLOCK = 3|1<<2|0<<7|1<<8;  // look MDR_RST_CLK->CPU_CLOCK and look at image in project folder ("Diagram of Clock settings")
+	MDR_RST_CLK->CPU_CLOCK = 2|1<<2|0<<7|1<<8;  // look MDR_RST_CLK->CPU_CLOCK and look at image in project folder ("Diagram of Clock settings")
 }
 

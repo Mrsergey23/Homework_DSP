@@ -11,6 +11,7 @@
 #include "uRST_CLK_init.h"
 #include "uTimer_init.h"
 #include "uLED_fun.h"
+#include "MDR32F9Qx_rst_clk.h"
 #include "MDR32F9Qx_timer.h"
 #include "MDR32F9Qx_uart.h"
 #include "string.h"
@@ -18,37 +19,41 @@
 //#include "retarget_uart.h" // tried to debug with UART
 
 //----------------- INPUT parameters -----------------
-#define UART_SPEED		115200 			 // bps
-#define FREQ_CPU			  80    			 // MHz
-#define TIMER_PERIOD		5			  	 // S
+#define UART_SPEED		57600 			 // bps
+#define FREQ_CPU			  32    		 // MHz
+#define TIMER_PERIOD		0.5			  	 // S
 unsigned char Data_receive[4] = {0,0,0,0}; // package for receiving data from UART 
 uint32_t counter_handler = 0;
-
+char adcString [15];
+volatile char speed_char[10];
+volatile uint32_t speed_uart = UART_SPEED;
+volatile int i = 0;
+//uint32_t cpuclock_check;
 int main()
 {
-//	while(UART_GetFlagStatus(UART,UART_FLAG_RXFE)==0)
-//	{
-//		Data_receive[3] = (unsigned char)UART_ReceiveData(UART);
-//	}
-	char adcString [15];
+
 	m_setUpFreq(FREQ_CPU);
 	m_initLEDs();
 	m_MLT_Init();
 	m_setUpTimer(TIMER_PERIOD, FREQ_CPU);
 	m_UART_Init(UART_SPEED);
-	
-	
+// Using this structure we can check current CPU_freq. Uncomment for checking
+//	RST_CLK_FreqTypeDef RST_CLK_Clocks;
+//	RST_CLK_GetClocksFreq(&RST_CLK_Clocks);
+//	cpuclock_check = RST_CLK_Clocks.CPU_CLK_Frequency;
 	m_MLT_Put_String ("Жарких Сергей",0);
 	m_MLT_Put_String ("Андреевич",1);
 	m_MLT_Put_String ("РЛ1-113",2);
 	sprintf(adcString,"CPU Freq %d MHz",FREQ_CPU); // convert number to string 
 	m_MLT_Put_String(adcString,4);
 	sprintf(adcString,"UART %d bps",UART_SPEED); // convert number to string 
-	m_MLT_Put_String(adcString,6);
-
+	m_MLT_Put_String(adcString,7);
+//	sprintf(speed_char, "%d", UART_SPEED);
+//	size_speed_char = strlen(speed_char);
+	NVIC_EnableIRQ(TIMER_IRQ);
 	while(1)
 	{
-		sprintf(adcString,"Handler %d",counter_handler);
+		sprintf(adcString,"Handler %2d",counter_handler);
 		m_MLT_Put_String(adcString,5);
 	}
 }
@@ -66,17 +71,12 @@ void TIMER1_IRQHandler (void)
 	{
 		m_LED_toggle(PORT_Pin_15);
 		counter_handler+=1;
+		
 		TIMER_ClearITPendingBit(MDR_TIMER1, TIMER_STATUS_CNT_ZERO);
-		//UART_SendData(UART, (uint8_t)FREQ_CPU);
-		//printf("MHz");
+		//sprintf(adcString,"%d",FREQ_CPU); // convert number to string 
+		UART_SendData(UART, ((UART_SPEED>>16)&0xFF));
+		UART_SendData(UART, ((UART_SPEED>>8)&0xFF));
+		UART_SendData(UART, (UART_SPEED&0xFF));
 	}
 }
 
-//// Try to do change speed by UART
-//void UART_Handler_RX_TX(void)
-//{
-//}
-//void UART3_IRQHandler (void)
-//{
-//	UART_Handler_RX_TX();
-//}
